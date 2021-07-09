@@ -1,5 +1,3 @@
-#!/bin/bash
-
 set -ex
 set -o pipefail
 
@@ -17,10 +15,7 @@ check_if_meta_yaml_file_exists() {
 }
 
 build_package(){
-    ver=( 3.6 3.7 3.8 )
-    for i in "${ver[@]}"; do
-        conda build -c conda-forge -c bioconda -c genomewalker --python "${i}" --output-folder . .
-    done
+    conda build -c conda-forge -c bioconda --output-folder . .
     conda convert -p osx-64 linux-64/*.tar.bz2
 }
 
